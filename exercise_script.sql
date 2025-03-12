@@ -96,7 +96,7 @@ SELECT lower(title) AS film_title
 
 -- 15. Hay algún actor o actriz que no aparezca en ninguna película en la tabla film_actor.
 
-/* En principio, la tabla intermedia y la relacion entre film y actor debería evitar esto. En cualquier caso, si hubiera alguno, aparecería con: */
+/* En principio, la tabla intermedia y la relacion entre film y actor debería evitar esto. En cualquier caso, si hubiera alguno, aparecería con */
 
 SELECT * 
 	FROM film_actor
@@ -230,5 +230,3 @@ SELECT CONCAT(lower(a1.first_name), " ", lower(a1.last_name)) AS actor_1, CONCAT
     INNER JOIN actor AS a2
     ON fa2.actor_id = a2.actor_id
     GROUP BY actor_1, actor_2;
-    
-			
