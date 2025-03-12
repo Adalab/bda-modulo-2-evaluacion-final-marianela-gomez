@@ -26,7 +26,6 @@ SELECT CONCAT(lower(first_name), " ", lower(last_name)) AS actor_name
 	FROM actor
     WHERE last_name LIKE ("Gibson");
 
-
     
 SELECT lower(first_name) AS actor_name
 	FROM actor
@@ -43,12 +42,11 @@ SELECT rating, COUNT(rating) AS num_of_films
     GROUP BY rating;
     
 
-SELECT CONCAT(lower(c.first_name), " ", lower(c.last_name)) AS customer_name, COUNT(c.customer_id) AS rented_films
+SELECT c.customer_id, CONCAT(lower(c.first_name), " ", lower(c.last_name)) AS customer_name, COUNT(c.customer_id) AS rented_films
 	FROM customer AS c
     INNER JOIN rental AS r
     USING (customer_id)
     GROUP BY c.customer_id; 
-
 
 SELECT c.name AS category, COUNT(fc.category_id) AS rented_films
 	FROM rental AS r
@@ -84,8 +82,7 @@ SELECT *
 	FROM film_actor
     WHERE film_id IS NULL;
 
-
-SELECT lower(title) AS film_title, release_year
+SELECT lower(title) AS film_title
 	FROM film
     WHERE release_year BETWEEN 2005 AND 2010;
 
@@ -99,7 +96,7 @@ SELECT lower(f.title) AS film_title
 							FROM category
 							WHERE name = "Family"
     );
-    
+
 
 SELECT CONCAT(lower(a.first_name), " ", lower(a.last_name)) AS actor_name
 	FROM actor AS a
@@ -148,11 +145,10 @@ SELECT DISTINCT lower(f.title) AS film_title
 							WHERE TIMESTAMPDIFF(DAY, rental_date, return_date) > 5
 );
 
-
 WITH actors_in_horror AS (
 						SELECT DISTINCT CONCAT(lower(a.first_name), " ", lower(a.last_name)) AS actor_name
 							FROM actor as a
-							INNER JOIN film_actor AS fm
+							INNER JOIN film_actor AS fa
 							USING (actor_id)
 							INNER JOIN film_category AS fc
 							USING (film_id)
@@ -170,7 +166,7 @@ SELECT lower(title) AS film
     INNER JOIN film_category AS fm
     USING (film_id)
     INNER JOIN category AS c
-    USING(category_id)
+    USING (category_id)
     WHERE c.name = "Comedy" AND f.length > 180;
     
     

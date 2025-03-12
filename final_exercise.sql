@@ -54,7 +54,7 @@ SELECT rating, COUNT(rating) AS num_of_films
     
 -- 10. Encuentra la cantidad total de películas alquiladas por cada cliente y muestra el ID del cliente, su nombre y apellido junto con la cantidad de películas alquiladas.
 
-SELECT CONCAT(lower(c.first_name), " ", lower(c.last_name)) AS customer_name, COUNT(c.customer_id) AS rented_films
+SELECT c.customer_id, CONCAT(lower(c.first_name), " ", lower(c.last_name)) AS customer_name, COUNT(c.customer_id) AS rented_films
 	FROM customer AS c
     INNER JOIN rental AS r
     USING (customer_id)
@@ -96,7 +96,7 @@ SELECT lower(title) AS film_title
 
 -- 15. Hay algún actor o actriz que no aparezca en ninguna película en la tabla film_actor.
 
-/* En principio, la tabla intermedia y la relacion entre film y actor debería evitar esto. En cualquier caso, si hubiera alguno, aparecería con */
+/* En principio, la tabla intermedia y la relacion entre film y actor debería evitar esto. En cualquier caso, si hubiera alguno, aparecería con: */
 
 SELECT * 
 	FROM film_actor
@@ -104,7 +104,7 @@ SELECT *
 
 -- 16. Encuentra el título de todas las películas que fueron lanzadas entre el año 2005 y 2010.
 
-SELECT lower(title) AS film_title, release_year
+SELECT lower(title) AS film_title
 	FROM film
     WHERE release_year BETWEEN 2005 AND 2010;
 
@@ -148,7 +148,6 @@ SELECT c.name, ROUND(AVG(length), 2) AS avg_length_in_min
 
 -- 21. Encuentra los actores que han actuado en al menos 5 películas y muestra el nombre del actor junto con la cantidad de películas en las que han actuado.
 
-
 WITH actors_in_films AS (
 						SELECT CONCAT(lower(a.first_name), " ", lower(a.last_name)) AS actor_name, COUNT(fa.actor_id) AS num_of_films
 							FROM actor AS a
@@ -181,7 +180,7 @@ SELECT DISTINCT lower(f.title) AS film_title
 WITH actors_in_horror AS (
 						SELECT DISTINCT CONCAT(lower(a.first_name), " ", lower(a.last_name)) AS actor_name
 							FROM actor as a
-							INNER JOIN film_actor AS fm
+							INNER JOIN film_actor AS fa
 							USING (actor_id)
 							INNER JOIN film_category AS fc
 							USING (film_id)
@@ -200,7 +199,7 @@ SELECT lower(title) AS film
     INNER JOIN film_category AS fm
     USING (film_id)
     INNER JOIN category AS c
-    USING(category_id)
+    USING (category_id)
     WHERE c.name = "Comedy" AND f.length > 180;
     
 ##############################################################################################################################
