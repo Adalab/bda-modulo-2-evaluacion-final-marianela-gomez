@@ -214,4 +214,28 @@ SELECT lower(title) AS film
 ########################################################## B O N U S #########################################################
 ##############################################################################################################################
 
+-- Encuentra todos los actores que han actuado juntos en al menos una película. 
+-- La consulta debe mostrar el nombre y apellido de los actores y el número de películas en las que han actuado juntos.
 
+/* Primero: ver los actores que comparten film_id en film_actor. 
+	Se hace un self join cuando fa1.film_id = fa2.film_id y para evitar duplicados, se une solo si fa1.actor_id < fa2.actor_id. 
+    Así, si el 1 y el 10 están en la misma peli, cuenta solo cuando actor1 es 1 y actor2 es 10.
+    
+    Segundo: Agrupar por pares de actores que comparten el film_id. 
+		Así podemos contar los film_id en las que aparecen juntos.
+        
+	Tercero: Mostrar el nombre de los actores. 
+		Como se ha hecho un self join, habrá que hacer un join a cada film_actor para poder mostrar los nombres de actor1 y actor2*/
+    
+SELECT CONCAT(lower(a1.first_name), " ", lower(a1.last_name)) AS actor_1, CONCAT(lower(a2.first_name), " ", lower(a2.last_name)) AS actor_2, COUNT(fa1.film_id) AS films_together
+	FROM film_actor AS fa1
+    INNER JOIN film_actor AS fa2
+    ON fa1.film_id = fa2.film_id
+    AND fa1.actor_id < fa2.actor_id
+    INNER JOIN actor AS a1
+    ON fa1.actor_id = a1.actor_id
+    INNER JOIN actor AS a2
+    ON fa2.actor_id = a2.actor_id
+    GROUP BY actor_1, actor_2;
+    
+			
