@@ -1,13 +1,52 @@
-# Table of contents
+# SQL - sakila
 
-- [Spanish version](#ejercicio-evaluación-módulo-2-bootcamp-data-analytics-adalab)
+## 🔗 Table of contents 
 
-- [English version](#final-exercise-module-2-adalab-data-analytics-bootcamp)
+- [Description](#️-description)
 
-## Ejercicio evaluación Módulo 2 Bootcamp Data Analytics Adalab
+- [Files and folders](#-files-and-folders)
 
-Este repositorio contiene el ejercicio de evaluación del Módulo 2 (SQL) del Bootcamp de Data Analytics de Adalab. 
+- [Getting started](#-getting-started)
 
-## Final exercise Module 2 Adalab Data Analytics Bootcamp 
 
-This repository contains the evaluation exercise for Module 2 (SQL) from the Adalab Data Analytics Bootcamp. 
+
+## 🗒️ Description 
+
+This repository contains the evaluation exercise for Module 2 (SQL) from the Adalab Data Analytics Bootcamp.
+
+The exercise consist of exploring the sakila database using SQL queries. The result of the asked assigment is in the `final_exercise.sql` file. 
+
+The database is strcutured as follows:
+
+![Figure 1: Diagram of sakila structure](https://github.com/Adalab/bda-modulo-2-evaluacion-final-marianela-gomez/blob/main/img/sakila.png)
+
+## 📁 Files and folders
+
+### 📂 files 
+
+It contains the SQL script used in the Jupyter Notebook, and its csv outputs. 
+
+### 📂 img 
+
+It contains the sakila strcutre figure.
+
+### Main files
+
+- **`final_exercise.sql`** → The final esercise as it is. 
+- **`commit_queries_sakila.ipynb`** → A Jupyter Notebook that automate the queries execution. 
+- **`requirements.txt`** → List of dependencies nedded to set up this project. 
+
+## 🚀 Getting started
+
+1️⃣ Clone the repository
+
+```
+git clone https://github.com/Adalab/bda-modulo-2-evaluacion-final-marianela-gomez
+```
+2️⃣ Install dependencies 
+
+```
+pip install requirements.txt
+```
+
+3️⃣ Explore the `commit_queries_sakila.ipynb` Jupyter Notebook
