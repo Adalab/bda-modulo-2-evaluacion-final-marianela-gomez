@@ -148,13 +148,6 @@ SELECT c.name, ROUND(AVG(length), 2) AS avg_length_in_min
 
 -- 21. Encuentra los actores que han actuado en al menos 5 películas y muestra el nombre del actor junto con la cantidad de películas en las que han actuado.
 
-/* SELECT CONCAT(lower(a.first_name), " ", lower(a.last_name)) AS actor_name, COUNT(fa.actor_id) AS num_of_films
-	FROM actor AS a
-    INNER JOIN film_actor AS fa
-    USING (actor_id)
-    GROUP BY (fa.actor_id)
-    HAVING num_of_films > 5
-    ; */
 
 WITH actors_in_films AS (
 						SELECT CONCAT(lower(a.first_name), " ", lower(a.last_name)) AS actor_name, COUNT(fa.actor_id) AS num_of_films
